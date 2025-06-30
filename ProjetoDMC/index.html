@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Estoque</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="sidebar bg-blue-800 text-white h-screen p-4">
+            <nav>
+                <ul class="space-y-2">
+                    <li class="hover:bg-blue-700 p-2 rounded"><a href="#" class="sidebar-text" data-section="dashboard">Dashboard</a></li>
+                    <li class="hover:bg-blue-700 p-2 rounded"><a href="#" class="sidebar-text" data-section="estoque">Estoque</a></li>
+                    <li class="hover:bg-blue-700 p-2 rounded"><a href="#" class="sidebar-text" data-section="fornecedores">Fornecedores</a></li>
+                    <li class="hover:bg-blue-700 p-2 rounded"><a href="#" class="sidebar-text" data-section="pedidos">Pedidos</a></li>
+                    <li class="hover:bg-blue-700 p-2 rounded"><a href="#" class="sidebar-text" data-section="relatorios">Relatórios</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 content-area p-6">
+            <header class="mb-6">
+                <h1 class="text-2xl font-bold text-gray-800">Dashboard</h1>
+            </header>
+
+            <!-- Seções -->
+            <main>
+                <div id="dashboard-section" class="section-content">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <!-- Clientes -->
+        <div class="bg-white rounded-lg shadow p-4">
+            <p class="text-gray-500 text-sm">Clientes Cadastrados</p>
+            <h3 class="text-3xl font-bold text-gray-800 mt-1">145</h3>
+            <p class="text-green-500 text-sm mt-2">+5 esta semana</p>
+        </div>
+
+        <!-- Pedidos -->
+        <div class="bg-white rounded-lg shadow p-4">
+            <p class="text-gray-500 text-sm">Total de Pedidos</p>
+            <h3 class="text-3xl font-bold text-gray-800 mt-1">230</h3>
+            <p class="text-green-500 text-sm mt-2">+8 este mês</p>
+        </div>
+
+        <!-- Estoque -->
+        <div class="bg-white rounded-lg shadow p-4">
+            <p class="text-gray-500 text-sm">Produtos em Estoque</p>
+            <h3 class="text-3xl font-bold text-gray-800 mt-1">1,350</h3>
+            <p class="text-blue-500 text-sm mt-2">Estável</p>
+        </div>
+
+        <!-- Fornecedores -->
+        <div class="bg-white rounded-lg shadow p-4">
+            <p class="text-gray-500 text-sm">Fornecedores</p>
+            <h3 class="text-3xl font-bold text-gray-800 mt-1">42</h3>
+            <p class="text-green-500 text-sm mt-2">+2 este mês</p>
+        </div>
+    </div>
+
+    <!-- Gráfico ou Atividades Recentes -->
+    <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4">Atividade Recente</h2>
+        <ul class="divide-y divide-gray-200">
+            <li class="py-3">
+                <p class="text-sm text-gray-700">Pedido #11234 foi criado por João Silva.</p>
+                <p class="text-xs text-gray-400">Há 2 horas</p>
+            </li>
+            <li class="py-3">
+                <p class="text-sm text-gray-700">Estoque atualizado: 100 sacos de cimento adicionados ao Depósito Central.</p>
+                <p class="text-xs text-gray-400">Ontem às 15:23</p>
+            </li>
+            <li class="py-3">
+                <p class="text-sm text-gray-700">Novo cliente cadastrado: Maria Oliveira.</p>
+                <p class="text-xs text-gray-400">2 dias atrás</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="estoque-section" class="section-content" style="display: none;">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Controle de Estoque</h2>
+
+    <!-- Formulário para adicionar estoque -->
+<form action="add_estoque.php" method="POST" class="bg-white p-6 rounded shadow mb-6 max-w-3xl">
+        <h3 class="text-lg font-semibold mb-4 text-gray-700">Adicionar ao Estoque</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Produto</label>
+                <input type="text" placeholder="Nome do Produto" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" required>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Marca</label>
+               <input type="text" name="produto" id="input-produto" placeholder="Nome do Produto" required>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Quantidade</label>
+        <input type="number" name="quantidade" id="input-quantidade" placeholder="Quantidade" required>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Depósito</label>
+           <input type="text" name="deposito" id="input-deposito" placeholder="Nome do Depósito" required>
+            </div>
+
+            <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-gray-700">Data de Entrada</label>
+        <input type="date" name="data" id="input-data" required>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Adicionar Estoque</button>
+        </div>
+    </form>
+
+    <!-- Tabela de estoque (exemplo estático) -->
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-300 rounded">
+            <thead class="bg-gray-100 text-gray-700">
+                <tr>
+                    <th class="px-4 py-2">Código</th>
+                    <th class="px-4 py-2">Produto</th>
+                    <th class="px-4 py-2">Marca</th>
+                    <th class="px-4 py-2">Quantidade</th>
+                    <th class="px-4 py-2">Depósito</th>
+                    <th class="px-4 py-2">Data</th>
+                    <th class="px-4 py-2">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-gray-800 border-t hover:bg-gray-50">
+                    <td class="px-4 py-2">1</td>
+                    <td class="px-4 py-2">Cimento CP II</td>
+                    <td class="px-4 py-2">Votorantim</td>
+                    <td class="px-4 py-2">100</td>
+                    <td class="px-4 py-2">Depósito Central</td>
+                    <td class="px-4 py-2">2025-06-30</td>
+                    <td class="px-4 py-2">
+                        <a href="#" class="text-blue-600 hover:underline mr-2">Editar</a>
+                        <a href="#" class="text-red-600 hover:underline">Excluir</a>
+                    </td>
+                </tr>
+                <!-- Mais linhas de exemplo podem ser adicionadas aqui -->
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="fornecedores-section" class="section-content" style="display: none;">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Gerenciamento de Fornecedores</h2>
+
+    <!-- Formulário para adicionar fornecedor -->
+    <form class="bg-white p-6 rounded shadow mb-6 max-w-4xl">
+        <h3 class="text-lg font-semibold mb-4 text-gray-700">Cadastrar Novo Fornecedor</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Nome</label>
+                <input type="text" placeholder="Nome do Fornecedor" class="mt-1 w-full border border-gray-300 rounded px-3 py-2" required>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Documento</label>
+                <input type="text" placeholder="CPF/CNPJ" class="mt-1 w-full border border-gray-300 rounded px-3 py-2" required>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Telefone</label>
+                <input type="text" placeholder="Ex: 11999999999" class="mt-1 w-full border border-gray-300 rounded px-3 py-2" required>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" placeholder="fornecedor@exemplo.com" class="mt-1 w-full border border-gray-300 rounded px-3 py-2">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Endereço</label>
+                <input type="text" placeholder="Rua/Avenida" class="mt-1 w-full border border-gray-300 rounded px-3 py-2">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Número</label>
+                <input type="number" placeholder="Número" class="mt-1 w-full border border-gray-300 rounded px-3 py-2">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Bairro</label>
+                <input type="text" placeholder="Bairro" class="mt-1 w-full border border-gray-300 rounded px-3 py-2">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Cidade</label>
+                <input type="text" placeholder="Cidade" class="mt-1 w-full border border-gray-300 rounded px-3 py-2">
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Cadastrar</button>
+        </div>
+    </form>
+
+    <!-- Tabela de Fornecedores (exemplo estático) -->
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-300 rounded">
+            <thead class="bg-gray-100 text-gray-700">
+                <tr>
+                    <th class="px-4 py-2">Código</th>
+                    <th class="px-4 py-2">Nome</th>
+                    <th class="px-4 py-2">Telefone</th>
+                    <th class="px-4 py-2">Cidade</th>
+                    <th class="px-4 py-2">Email</th>
+                    <th class="px-4 py-2">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-t hover:bg-gray-50 text-gray-800">
+                    <td class="px-4 py-2">1</td>
+                    <td class="px-4 py-2">Construmix Ltda</td>
+                    <td class="px-4 py-2">(11) 98888-7777</td>
+                    <td class="px-4 py-2">São Paulo</td>
+                    <td class="px-4 py-2">contato@construmix.com</td>
+                    <td class="px-4 py-2">
+                        <a href="#" class="text-blue-600 hover:underline mr-2">Editar</a>
+                        <a href="#" class="text-red-600 hover:underline">Excluir</a>
+                    </td>
+                </tr>
+                <!-- Novas linhas serão adicionadas via PHP futuramente -->
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="pedidos-section" class="section-content" style="display: none;">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Controle de Pedidos</h2>
+
+    <!-- Formulário de Novo Pedido -->
+    <form class="bg-white p-6 rounded shadow mb-6 max-w-3xl">
+        <h3 class="text-lg font-semibold mb-4 text-gray-700">Registrar Novo Pedido</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Código do Cliente</label>
+                <input type="number" placeholder="Ex: 101" class="mt-1 w-full border border-gray-300 rounded px-3 py-2" required>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Data do Pedido</label>
+                <input type="date" class="mt-1 w-full border border-gray-300 rounded px-3 py-2" required>
+            </div>
+
+            <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-gray-700">Valor Total</label>
+                <input type="number" step="0.01" placeholder="Ex: 1500.00" class="mt-1 w-full border border-gray-300 rounded px-3 py-2" required>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Cadastrar Pedido</button>
+        </div>
+    </form>
+
+    <!-- Tabela de Pedidos -->
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-300 rounded">
+            <thead class="bg-gray-100 text-gray-700">
+                <tr>
+                    <th class="px-4 py-2">Código</th>
+                    <th class="px-4 py-2">Cliente</th>
+                    <th class="px-4 py-2">Data</th>
+                    <th class="px-4 py-2">Valor Total</th>
+                    <th class="px-4 py-2">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-t hover:bg-gray-50 text-gray-800">
+                    <td class="px-4 py-2">1001</td>
+                    <td class="px-4 py-2">João Silva</td>
+                    <td class="px-4 py-2">2025-06-30</td>
+                    <td class="px-4 py-2">R$ 2.500,00</td>
+                    <td class="px-4 py-2">
+                        <a href="#" class="text-blue-600 hover:underline mr-2">Editar</a>
+                        <a href="#" class="text-red-600 hover:underline">Excluir</a>
+                    </td>
+                </tr>
+                <!-- Linhas dinâmicas via PHP futuramente -->
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="relatorios-section" class="section-content" style="display: none;">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6">Relatórios e Estatísticas</h2>
+
+    <!-- Cartões de Resumo -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white p-5 rounded shadow text-center">
+            <h3 class="text-gray-500 text-sm mb-1">Total de Clientes</h3>
+            <p class="text-3xl font-bold text-blue-700">--</p> <!-- valor via PHP -->
+        </div>
+        <div class="bg-white p-5 rounded shadow text-center">
+            <h3 class="text-gray-500 text-sm mb-1">Total de Pedidos</h3>
+            <p class="text-3xl font-bold text-blue-700">--</p> <!-- valor via PHP -->
+        </div>
+        <div class="bg-white p-5 rounded shadow text-center">
+            <h3 class="text-gray-500 text-sm mb-1">Valor Total Vendido</h3>
+            <p class="text-3xl font-bold text-green-600">--</p> <!-- valor via PHP -->
+        </div>
+    </div>
+
+    <!-- Tabela de Pedidos Recentes -->
+    <div class="bg-white rounded shadow p-4">
+        <h3 class="text-lg font-semibold text-gray-700 mb-4">Últimos Pedidos</h3>
+        <div class="overflow-x-auto">
+            <table class="min-w-full text-left border border-gray-200">
+                <thead class="bg-gray-100 text-gray-700">
+                    <tr>
+                        <th class="px-4 py-2">Código</th>
+                        <th class="px-4 py-2">Cliente</th>
+                        <th class="px-4 py-2">Data</th>
+                        <th class="px-4 py-2">Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-t hover:bg-gray-50">
+                        <td class="px-4 py-2">1002</td>
+                        <td class="px-4 py-2">Maria Souza</td>
+                        <td class="px-4 py-2">2025-06-29</td>
+                        <td class="px-4 py-2">R$ 1.350,00</td>
+                    </tr>
+                    <!-- Linhas dinâmicas via PHP futuramente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

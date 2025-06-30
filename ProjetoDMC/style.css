@@ -1,0 +1,141 @@
+/* styles.css */
+
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f3f4f6; /* para um cinza claro geral */
+    margin: 0;
+    padding: 0;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    transition: all 0.3s;
+    width: 16rem; /* 256px */
+    background-color: #1e40af; /* Azul escuro (Tailwind blue-800) */
+    color: white;
+    height: 100vh;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.sidebar.collapsed {
+    width: 4rem; /* 64px */
+}
+
+.sidebar.collapsed .sidebar-text {
+    display: none;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem; /* arredondado */
+    transition: background-color 0.2s;
+    color: inherit;
+    text-decoration: none;
+}
+
+.sidebar ul li:hover, 
+.sidebar ul li a.active {
+    background-color: #2563eb; /* Tailwind blue-600 */
+    cursor: pointer;
+}
+
+/* Content Area */
+.content-area {
+    transition: all 0.3s;
+    flex-grow: 1;
+    padding: 1.5rem;
+}
+
+/* Chart Container */
+.chart-container {
+    height: 250px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+}
+
+thead {
+    background-color: #f9fafb;
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb; /* cinza claro */
+    font-size: 0.875rem;
+    color: #374151;
+}
+
+tbody tr:hover {
+    background-color: #f3f4f6;
+    cursor: pointer;
+}
+
+/* Estoque specific styles */
+/* Exemplo de linha com baixo estoque */
+.low-stock {
+    background-color: #fef2f2; /* vermelho claro */
+    color: #b91c1c; /* vermelho escuro */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 4rem;
+    }
+    .sidebar-text {
+        display: none;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+
+    thead tr {
+        display: none; /* Esconde o cabeçalho da tabela */
+    }
+
+    tbody tr {
+        margin-bottom: 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+    }
+
+    tbody td {
+        padding-left: 50%;
+        position: relative;
+        text-align: right;
+    }
+
+    tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 1rem;
+        top: 0.75rem;
+        font-weight: 600;
+        color: #6b7280;
+        text-align: left;
+    }
+}

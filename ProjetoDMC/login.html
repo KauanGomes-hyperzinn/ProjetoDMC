@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+    <form action="index.html">
+  <form id="loginForm">
+    <h2>Logar</h2>
+    <input type="text" id="username" placeholder="Usuário" required />
+    <input type="password" id="password" placeholder="Senha" required />
+    <div id="error" class="error" style="display:none;"></div>
+    <button type="submit">Login</button>
+
+    <p style="margin-top: 1rem; text-align: center;">
+  Não tem uma conta? 
+  <a href="register.html" style="color: #2c7be5; text-decoration: underline; cursor: pointer;">
+    Registrar
+  </a>
+</p>
+
+  </form>
+
+    <script>
+        // Função para pegar parâmetros da URL
+        function getQueryParams() {
+            const params = {};
+            window.location.search.substr(1).split("&").forEach(function(item) {
+                const [key, value] = item.split("=");
+                if (key) params[key] = decodeURIComponent(value);
+            });
+            return params;
+        }
+
+        // Pega os parâmetros e preenche os campos
+        window.onload = () => {
+            const params = getQueryParams();
+            if (params.username) document.getElementById("username").value = params.username;
+            if (params.email) console.log("Email recebido (não mostrado no login, pode ser usado para outro fim):", params.email);
+            // Senha não será preenchida por segurança
+        };
+    </script>
+</body>
+</html>
