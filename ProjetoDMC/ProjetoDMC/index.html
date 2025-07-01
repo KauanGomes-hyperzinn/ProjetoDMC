@@ -1,0 +1,47 @@
+<!-- Adicionar Estoque -->
+<form action="add_estoque.php" method="POST" class="bg-white p-6 rounded shadow mb-6 max-w-3xl">
+    <h3 class="text-lg font-semibold mb-4 text-gray-700">Adicionar ao Estoque</h3>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Produto</label>
+            <select name="cd_produto" required class="mt-1 block w-full border border-gray-300 rounded px-3 py-2">
+                <option value="">Selecione o Produto</option>
+                ?php
+                include 'conexao.php';
+                $produtos = mysqli_query($conexao, "SELECT cd_produto, nm_produto, nm_marca_produto FROM tb_produto");
+                while($produto = mysqli_fetch_assoc($produtos)) {
+                    echo "<option value='{$produto['cd_produto']}>{$produto['nm_produto']} - {$produto['nm_marca_produto']}</option>";
+                }
+                ?>
+            </select>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Quantidade</label>
+            <input type="number" name="quantidade" placeholder="Quantidade" required class="mt-1 block w-full border border-gray-300 rounded px-3 py-2">
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Depósito</label>
+            <select name="cd_deposito" required class="mt-1 block w-full border border-gray-300 rounded px-3 py-2">
+                <option value="">Selecione o Depósito</option>
+                <?php
+                $depositos = mysqli_query($conexao, "SELECT cd_deposito, nm_deposito FROM tb_deposito");
+                while($dep = mysqli_fetch_assoc($depositos)) {
+                    echo "<option value='{$dep['cd_deposito']}'>{$dep['nm_deposito']}</option>";
+                }
+                ?>
+            </select>
+        </div>
+
+        <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-gray-700">Data de Entrada</label>
+            <input type="date" name="data" required class="mt-1 block w-full border border-gray-300 rounded px-3 py-2">
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Adicionar Estoque</button>
+    </div>
+</form>

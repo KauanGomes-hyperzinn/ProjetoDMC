@@ -1,0 +1,49 @@
+/* styles.css */
+
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    transition: all 0.3s;
+    width: 16rem; /* 64px */
+}
+
+.sidebar.collapsed {
+    width: 4rem; /* 64px */
+}
+
+.sidebar.collapsed .sidebar-text {
+    display: none;
+}
+
+.content-area {
+    transition: all 0.3s;
+}
+
+.chart-container {
+    height: 250px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 4rem;
+    }
+    .sidebar-text {
+        display: none;
+    }
+}
